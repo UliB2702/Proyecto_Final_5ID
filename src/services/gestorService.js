@@ -8,3 +8,24 @@ export const getById = async (id) => {
     console.log(results)
     return results;
 }
+
+export const createGestor = async(gestor) => {
+    const conn = await sql.connect(configDB)
+    const results = await conn.request()
+    .input("gNombre", gestor.nombre)
+    .input("gDesc", gestor.descripción)
+    .input("gDni", gestor.dni)
+    .input("gEmail", gestor.email)
+    .input("gPsw", gestor.contraseña)
+    .input("gFoto", gestor.fotoPerfil)
+    .query('INSERT INTO Gestor (Nombre, Descripción, Dni, Email, Contraseña, FotoPerfil) VALUES (@gNombre, @gDesc, @gDni, @gEmail, @gPsw, @gFoto)')
+    console.log(results)
+    return results;
+}
+
+export const getByParams = async (email, contraseña) => {
+    const conn = await sql.connect(configDB)
+    const results = await conn.request().input("whereCondition", email).input("whereCondition2", contraseña).query('SELECT * FROM Gestor WHERE Email = @whereCondition AND Contraseña = @whereCondition2')
+    console.log(results)
+    return results;
+}
