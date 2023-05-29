@@ -9,17 +9,17 @@ controller.get('', async(req, res) => {
 })
 
 controller.get('', async(req, res) => {
-    const cliente = await getByParams(req.email, req.psw)
+    const cliente = await getByParams(req.body.email, req.body.psw)
     return res.status(200).json(cliente)
 })
 
 controller.create('', async(req, res) => {
     let cliente = new Cliente()
-    cliente.nombre = req.nombre
-    cliente.dni = req.dni
-    cliente.email = req.email
-    cliente.contraseña = req.psw
-    cliente.fotoPerfil = req.foto
+    cliente.nombre = req.body.nombre
+    cliente.dni = req.body.dni
+    cliente.email = req.body.email
+    cliente.contraseña = req.body.psw
+    cliente.fotoPerfil = req.body.foto
     await createCliente(cliente) 
     return res.status(201).json(cliente)
 })
