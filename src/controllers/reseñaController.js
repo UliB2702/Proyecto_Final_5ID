@@ -8,7 +8,7 @@ controller.get('', async(req, res) => {
     return res.status(200).json(reseñas)
 })
 
-controller.create('', async(req, res) => {
+controller.post('', async(req, res) => {
     let reseña = new Reseña()
     reseña.idCliente = req.body.idc
     reseña.idGestor = req.body.idg
@@ -17,3 +17,5 @@ controller.create('', async(req, res) => {
     await createReseña(reseña)
     return res.status(200).json(reseña)
 })
+
+export default controller;

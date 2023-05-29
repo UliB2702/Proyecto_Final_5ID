@@ -1,19 +1,19 @@
 import { Router } from 'express';
-import { getByIDGestor, getByIDCliente, getTipo } from '../services/tramiteService.js';
+import { getByIDGestor, getByIDCliente, createTramite } from '../services/tramiteService.js';
 const controller = Router()
 import Tramite from "../models/Tramite.js";
 
 controller.get('', async(req, res) => {
-    const tramite = await getByIDGestor(req.body.id)
+    const tramite = await getByIDGestor(req.body.idg)
     return res.status(200).json(tramite)
 })
 
 controller.get('', async(req, res) => {
-    const tramite = await getByIDCliente(req.body.id)
+    const tramite = await getByIDCliente(req.body.idc)
     return res.status(200).json(tramite)
 })
 
-controller.create('', async(req, res) => {
+controller.post('', async(req, res) => {
     let tramite = new Tramite()
     tramite.idGestor = req.body.idg
     tramite.idCliente = req.body.idc
@@ -21,6 +21,8 @@ controller.create('', async(req, res) => {
     tramite.nombre = req.body.nombre
     tramite.descripción = req.body.desc
     tramite.idTipoTramite = req.body.idTipo
-    await createDocumento(tramite)
+    await createTramite(tramite)
     return res.status(201).json(tramite)
 })
+
+export default controller;

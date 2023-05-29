@@ -1,10 +1,10 @@
 import { Router } from 'express';
-import { getByID, createCliente } from '../services/clienteService.js';
+import { getById, createCliente, getByParams } from '../services/clienteService.js';
 const controller = Router()
 import Cliente from "../models/Cliente.js";
 
 controller.get('', async(req, res) => {
-    const cliente = await getByID(req.id)
+    const cliente = await getById(req.body.id)
     return res.status(200).json(cliente)
 })
 
@@ -13,7 +13,7 @@ controller.get('', async(req, res) => {
     return res.status(200).json(cliente)
 })
 
-controller.create('', async(req, res) => {
+controller.post('', async(req, res) => {
     let cliente = new Cliente()
     cliente.nombre = req.body.nombre
     cliente.dni = req.body.dni
@@ -23,3 +23,5 @@ controller.create('', async(req, res) => {
     await createCliente(cliente) 
     return res.status(201).json(cliente)
 })
+
+export default controller;

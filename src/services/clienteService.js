@@ -2,13 +2,12 @@ import Cliente from "../models/Cliente.js";
 import sql from 'mssql'
 import configDB from "../models/db.js";
 
-export const getAll = async () => {
+export const getById = async (id) => {
     const conn = await sql.connect(configDB)
-    const results = await conn.request().query('SELECT * FROM Cliente')
+    const results = await conn.request().input("whereCondition", id).query('SELECT * FROM Cliente WHERE Id = @whereCondition')
     console.log(results)
     return results;
 }
-
 export const createCliente = async(cliente) => {
     const conn = await sql.connect(configDB)
     const results = await conn.request()
@@ -17,7 +16,7 @@ export const createCliente = async(cliente) => {
     .input("cPsw", cliente.contraseña)
     .input("cDni", cliente.dni)
     .input("cFoto", cliente.fotoPerfil)
-    .query('INSERT INTO Cliente (Nombre, Dni, Email, Contraseña, FotoPerfil) VALUES (@gNombre, @gDni, @gEmail, @gPsw, @gDni, @gFoto)')
+    .query('INSERT INTO Cliente (Nombre, Dni, Email, Contraseña, FotoPerfil) VALUES (@cNombre, @cDni, @cEmail, @cPsw, @cFoto)')
     console.log(results)
     return results;
 }

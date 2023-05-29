@@ -13,7 +13,7 @@ controller.get('', async(req, res) => {
     return res.status(200).json(gestor)
 })
 
-controller.create('', async(req, res) => {
+controller.post('', async(req, res) => {
     let gestor = new Gestor()
     gestor.nombre = req.body.nombre
     gestor.descripción = req.body.desc
@@ -24,3 +24,5 @@ controller.create('', async(req, res) => {
     await createGestor(gestor) 
     return res.status(201).json(gestor)
 })
+
+export default controller;

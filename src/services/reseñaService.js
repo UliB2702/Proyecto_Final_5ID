@@ -9,14 +9,14 @@ export const getByIDGestor = async (id) => {
     return results;
 }
 
-export const createReseña = async(gestor) => {
+export const createReseña = async(reseña) => {
     const conn = await sql.connect(configDB)
     const results = await conn.request()
-    .input("rIdCliente", gestor.idCliente)
-    .input("rIdGestor", gestor.idGestor)
-    .input("rCantEstrellas", gestor.cantEstrellas)
-    .input("rTexto", gestor.texto)
-    .query('INSERT INTO Gestor (IdCliente, IdGestor, CantEstrellas, Texto) VALUES (@rIdCliente, @rIdGestor, @rCantEstrellas, @gEmail')
+    .input("rIdCliente", reseña.idCliente)
+    .input("rIdGestor", reseña.idGestor)
+    .input("rCantEstrellas", reseña.cantEstrellas)
+    .input("rTexto", reseña.texto)
+    .query('INSERT INTO Reseña (IdCliente, IdGestor, CantEstrellas, Texto) VALUES (@rIdCliente, @rIdGestor, @rCantEstrellas, @gEmail')
     console.log(results)
     return results;
 }

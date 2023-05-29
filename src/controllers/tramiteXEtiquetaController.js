@@ -8,7 +8,7 @@ controller.get('', async(req, res) => {
     return res.status(200).json(union)
 })
 
-controller.create('', async(req, res) =>{
+controller.post('', async(req, res) =>{
     let union = new TramiteXEtiqueta()
     union.idTramite = req.body.idT
     union.idEtiqueta = req.body.idE
@@ -17,3 +17,5 @@ controller.create('', async(req, res) =>{
     await createUnion(union)
     return res.status(201).json(union)
 })
+
+export default controller;
