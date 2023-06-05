@@ -4,7 +4,7 @@ import configDB from "../models/db.js";
 
 export const getByIDGestor = async (id) => {
     const conn = await sql.connect(configDB)
-    const results = await conn.request().input("whereCondition", id).query('SELECT * FROM Tramite INNER JOIN TipoDeTramite ON Tramite.IdTipoTramite = TipoDeTramite.Id Tramite INNER JOIN TramiteXEtiqueta ON Tramite.Id = TramiteXEtiqueta.IdTramite INNER JOIN Etiqueta ON TramiteXEtiqueta.IdEtiqueta = Etiqueta.Id WHERE IdGestor = @whereCondition')
+    const results = await conn.request().input("whereCondition", id).query('SELECT * FROM Tramite INNER JOIN TipoDeTramite ON Tramite.IdTipoTramite = TipoDeTramite.Id INNER JOIN TramiteXEtiqueta ON Tramite.Id = TramiteXEtiqueta.IdTramite INNER JOIN Etiqueta ON TramiteXEtiqueta.IdEtiqueta = Etiqueta.Id WHERE Tramite.IdGestor = @whereCondition')
     console.log(results)
     return results;
 }

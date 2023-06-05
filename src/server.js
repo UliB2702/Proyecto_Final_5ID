@@ -3,7 +3,7 @@ import ClienteRouter from "./controllers/clienteController.js";
 import GestorRouter from "./controllers/gestorController.js";
 import DocumentoRouter from "./controllers/documentoController.js";
 import EtiquetaRouter from "./controllers/etiquetaController.js";
-import ReseñaRouter from "./controllers/reseñaController.js";
+import ResenaRouter from "./controllers/resenaController.js";
 import TramiteRouter from "./controllers/tramiteController.js";
 import TramiteXEtiquetaRouter from "./controllers/tramiteXEtiquetaController.js";
 import PeticionRouter from "./controllers/peticionController.js";
@@ -20,7 +20,7 @@ app.use("/clientes", ClienteRouter)
 app.use("/gestores", GestorRouter)
 app.use("/documentos", DocumentoRouter)
 app.use("/etiquetas", EtiquetaRouter)
-app.use("/reseñas", ReseñaRouter)
+app.use("/resenas", ResenaRouter)
 app.use("/tramites", TramiteRouter)
 app.use("/tramitexetiquetas", TramiteXEtiquetaRouter)
 app.use("/peticiones", PeticionRouter)

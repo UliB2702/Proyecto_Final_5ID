@@ -4,7 +4,7 @@ import TramiteXEtiqueta from "../models/TramiteXEtiqueta.js";
 const controller = Router()
 
 controller.get('', async(req, res) => {
-    const union = await getByID(req.body.id)
+    const union = await getByID(req.body.idt, req.body.ide)
     return res.status(200).json(union)
 })
 

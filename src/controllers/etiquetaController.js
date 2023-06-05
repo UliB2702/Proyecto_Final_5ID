@@ -4,8 +4,9 @@ const controller = Router()
 import Etiqueta from "../models/Etiqueta.js";
 
 
-controller.get('', async(req, res) => {
-    const etiqueta = await getById(req.body.id)
+controller.get('/:id', async(req, res) => {
+    let id = req.params.id
+    const etiqueta = await getById(id)
     return res.status(200).json(etiqueta)
 })
 

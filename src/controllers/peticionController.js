@@ -14,12 +14,12 @@ controller.delete('', async(req,res) => {
 })
 
 controller.post('',  async(req,res) => {
-    let documento = new Documento()
-    documento.idGestor = req.body.idg
-    documento.idCliente = req.body.idc
-    documento.descripcion = req.body.desc
-    await createPeticion(documento)
-    return res.status(200).json(documento)
+    let peticion = new Peticion()
+    peticion.idGestor = req.body.idg
+    peticion.idCliente = req.body.idc
+    peticion.descripcion = req.body.desc
+    await createPeticion(peticion)
+    return res.status(200).json(peticion)
 })
 
 export default controller;

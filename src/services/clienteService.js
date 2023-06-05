@@ -10,6 +10,13 @@ export const getById = async (id) => {
 }
 export const createCliente = async(cliente) => {
     const conn = await sql.connect(configDB)
+    if(cliente.dni>99999999){
+        cliente.dni = 99999999
+    }
+    else(cliente.dni<10000000)
+    {
+        cliente.dni = 10000000
+    }
     const results = await conn.request()
     .input("cNombre", cliente.nombre)
     .input("cEmail", cliente.email)

@@ -11,6 +11,13 @@ export const getById = async (id) => {
 
 export const createGestor = async(gestor) => {
     const conn = await sql.connect(configDB)
+    if(gestor.dni>99999999){
+        gestor.dni = 99999999
+    }
+    else if(gestor.dni<10000000)
+    {
+        gestor.dni = 10000000
+    }
     const results = await conn.request()
     .input("gNombre", gestor.nombre)
     .input("gDesc", gestor.descripción)

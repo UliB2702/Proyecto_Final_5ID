@@ -1,4 +1,4 @@
-class Reseña{
+class Resena{
     id;
     idCliente;
     idGestor;
@@ -6,4 +6,4 @@ class Reseña{
     texto;
 }
 
-export default Reseña
+export default Resena

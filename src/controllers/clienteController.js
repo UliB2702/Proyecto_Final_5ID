@@ -3,8 +3,9 @@ import { getById, createCliente, getByParams } from '../services/clienteService.
 const controller = Router()
 import Cliente from "../models/Cliente.js";
 
-controller.get('', async(req, res) => {
-    const cliente = await getById(req.body.id)
+controller.get('/:id', async(req, res) => {
+    let id = req.params.id
+    const cliente = await getById(id)
     return res.status(200).json(cliente)
 })
 

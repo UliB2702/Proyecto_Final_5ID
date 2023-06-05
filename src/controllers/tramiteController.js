@@ -3,8 +3,9 @@ import { getByIDGestor, getByIDCliente, createTramite } from '../services/tramit
 const controller = Router()
 import Tramite from "../models/Tramite.js";
 
-controller.get('', async(req, res) => {
-    const tramite = await getByIDGestor(req.body.idg)
+controller.get('/:idg', async(req, res) => {
+    let id = req.params.idg
+    const tramite = await getByIDGestor(id)
     return res.status(200).json(tramite)
 })
 

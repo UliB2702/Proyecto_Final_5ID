@@ -3,8 +3,9 @@ import { getById, createGestor, getByParams } from '../services/gestorService.js
 const controller = Router()
 import Gestor from "../models/Gestor.js";
 
-controller.get('', async(req, res) => {
-    const gestor = await getById(req.body.id)
+controller.get('/:id', async(req, res) => {
+    let id = req.params.id
+    const gestor = await getById(id)
     return res.status(200).json(gestor)
 })
 

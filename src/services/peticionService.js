@@ -15,12 +15,14 @@ export const createPeticion = async (peticion) => {
     .input("pIdGestor", peticion.idGestor)
     .input("pIdCliente", peticion.idCliente)
     .input("pDesc", peticion.descripcion)
-    .query('INSERT INTO Gestor (IdGestor, IdCliente, Descripcion) VALUES (@pIdGestor, @pIdCliente , @gDesc)')
+    .query('INSERT INTO Peticion (IdGestor, IdCliente, Descripcion) VALUES (@pIdGestor, @pIdCliente , @pDesc)')
     console.log(results)
     return results;
 }
 
 export const deleteById = async (id) => {
     const conn = await sql.connect(configDB)
-    await conn.request().input("whereCondition", id).query('DELETE FROM Peticion WHERE Id = @whereCondition')
+    const result = await conn.request()
+    .input("whereCondition", id)
+    .query('DELETE FROM Peticion WHERE Peticion.Id = @whereCondition')
 }

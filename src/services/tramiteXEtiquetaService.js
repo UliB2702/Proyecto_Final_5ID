@@ -11,6 +11,7 @@ export const getByID = async (idTramite, idEtiqueta) => {
 
 export const createUnion = async (union) => {
     const conn = await sql.connect(configDB)
+    union.fechaActualizacion = Date.now();
     const results = await conn.request()
     .input("uIdT", union.idTramite)
     .input("uIdE", union.idEtiqueta)
