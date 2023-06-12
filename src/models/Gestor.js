@@ -5,7 +5,7 @@ class Gestor{
     dni;
     email;
     contraseña;
-    fotoPerfil;
+    fotoPerfil
 }
 
 export default Gestor

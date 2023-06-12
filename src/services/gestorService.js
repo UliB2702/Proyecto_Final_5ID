@@ -6,7 +6,7 @@ export const getById = async (id) => {
     const conn = await sql.connect(configDB)
     const results = await conn.request().input("whereCondition", id).query('SELECT * FROM Gestor WHERE Id = @whereCondition')
     console.log(results)
-    return results;
+    return results.recordsets[0];
 }
 
 export const createGestor = async(gestor) => {
