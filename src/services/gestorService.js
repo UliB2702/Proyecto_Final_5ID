@@ -9,6 +9,7 @@ export const getById = async (id) => {
     return results.recordsets[0];
 }
 
+
 export const createGestor = async(gestor) => {
     const conn = await sql.connect(configDB)
     if(gestor.dni>99999999){

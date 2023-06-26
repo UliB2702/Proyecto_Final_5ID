@@ -8,6 +8,8 @@ export const getById = async (id) => {
     console.log(results)
     return results;
 }
+
+
 export const createCliente = async(cliente) => {
     const conn = await sql.connect(configDB)
     if(cliente.dni>99999999){

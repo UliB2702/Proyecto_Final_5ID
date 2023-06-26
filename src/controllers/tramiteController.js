@@ -10,7 +10,8 @@ controller.get('/:idg', async(req, res) => {
 })
 
 controller.get('', async(req, res) => {
-    const tramite = await getByIDCliente(req.body.idc)
+    const idc = req.query.idc
+    const tramite = await getByIDCliente(idc)
     return res.status(200).json(tramite)
 })
 
