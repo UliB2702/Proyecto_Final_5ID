@@ -12,14 +12,13 @@ export const getById = async (id) => {
 
 export const createCliente = async(cliente) => {
     const conn = await sql.connect(configDB)
-    if(cliente.dni>99999999){
-        cliente.dni = 99999999
-    }
-    else(cliente.dni<10000000)
+    let results
+    if(cliente.dni<10000000 || cliente.dni>99999999)
     {
-        cliente.dni = 10000000
+    results = undefined
     }
-    const results = await conn.request()
+    else{
+    results = await conn.request()
     .input("cNombre", cliente.nombre)
     .input("cEmail", cliente.email)
     .input("cPsw", cliente.contraseña)
@@ -27,6 +26,7 @@ export const createCliente = async(cliente) => {
     .input("cFoto", cliente.fotoPerfil)
     .query('INSERT INTO Cliente (Nombre, Dni, Email, Contraseña, FotoPerfil) VALUES (@cNombre, @cDni, @cEmail, @cPsw, @cFoto)')
     console.log(results)
+    }
     return results;
 }
 

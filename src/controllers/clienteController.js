@@ -21,8 +21,15 @@ controller.post('', async(req, res) => {
     cliente.email = req.body.email
     cliente.contraseña = req.body.psw
     cliente.fotoPerfil = req.body.foto
-    await createCliente(cliente) 
-    return res.status(201).json(cliente)
+    let completado
+    completado = await createCliente(cliente) 
+    if(completado == undefined)
+    {
+        return res.status(400).json(cliente)
+    }
+    else{
+        return res.status(201).json(cliente)
+    }
 })
 
 export default controller;
