@@ -11,7 +11,7 @@ export const getById = async (id) => {
 
 export const getClientes = async (id) => {
     const conn = await sql.connect(configDB)
-    const results = await conn.request().input("whereCondition", id).query('SELECT DISTINCT Cliente.Id, Cliente.Nombre From Gestor INNER JOIN Tramite ON Gestor.Id = Tramite.IdGestor INNER JOIN Cliente ON Tramite.IdCliente = Cliente.Id WHERE Gestor.Id = @whereCondition')
+    const results = await conn.request().input("whereCondition", id).query('SELECT DISTINCT Cliente.Id, Cliente.Nombre, Tramite.Nombre, Tramite.IdPais, Tramite.Descripción From Gestor INNER JOIN Tramite ON Gestor.Id = Tramite.IdGestor INNER JOIN Cliente ON Tramite.IdCliente = Cliente.Id INNER JOIN TipoDeTramite ON Tramite.IdTipoTramite = TipoDeTramite.Id INNER JOIN TramiteXEtiqueta ON Tramite.Id = TramiteXEtiqueta.IdTramite INNER JOIN Etiqueta ON TramiteXEtiqueta.IdEtiqueta = Etiqueta.Id WHERE Gestor.Id = @whereCondition')
     console.log(results)
     return results.recordsets[0];
 }

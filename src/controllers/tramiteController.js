@@ -3,14 +3,14 @@ import { getByIDGestor, getByIDCliente, createTramite } from '../services/tramit
 const controller = Router()
 import Tramite from "../models/Tramite.js";
 
-controller.get('/:idg', async(req, res) => {
-    let id = req.params.idg
+controller.get('', async(req, res) => {
+    let id = req.query.idg
     const tramite = await getByIDGestor(id)
     return res.status(200).json(tramite)
 })
 
-controller.get('', async(req, res) => {
-    const idc = req.query.idc
+controller.get('/:idc', async(req, res) => {
+    const idc = req.params.idc
     const tramite = await getByIDCliente(idc)
     return res.status(200).json(tramite)
 })
@@ -28,3 +28,4 @@ controller.post('', async(req, res) => {
 })
 
 export default controller;
+
