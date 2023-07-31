@@ -11,9 +11,11 @@ export const getById = async (id) => {
 
 export const getClientes = async (id) => {
     const conn = await sql.connect(configDB)
-    const results = await conn.request().input("whereCondition", id).query('SELECT DISTINCT Cliente.Id, Cliente.Nombre, Tramite.Nombre, Tramite.IdPais, Tramite.Descripción From Gestor INNER JOIN Tramite ON Gestor.Id = Tramite.IdGestor INNER JOIN Cliente ON Tramite.IdCliente = Cliente.Id INNER JOIN TipoDeTramite ON Tramite.IdTipoTramite = TipoDeTramite.Id INNER JOIN TramiteXEtiqueta ON Tramite.Id = TramiteXEtiqueta.IdTramite INNER JOIN Etiqueta ON TramiteXEtiqueta.IdEtiqueta = Etiqueta.Id WHERE Gestor.Id = @whereCondition')
+    const results = await conn.request()
+    .input("whereCondition", id)
+    .query('SELECT Gestor.Id,  Cliente.id, Cliente.nombre, Cliente.Dni,(SELECT Tramite.id, Tramite.Nombre, Tramite.Descripción FROM Tramite WHERE Tramite.IdGestor = Gestor.Id and Tramite.IdCliente = Cliente.id FOR JSON PATH) as ListaTramites FROM Gestor, Cliente where Gestor.Id = @whereCondition')
     console.log(results)
-    return results.recordsets[0];
+    return results.recordset;
 }
 
 
