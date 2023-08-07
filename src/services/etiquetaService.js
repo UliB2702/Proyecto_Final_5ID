@@ -13,7 +13,7 @@ export const getAll = async () => {
     const conn = await sql.connect(configDB)
     const results = await conn.request().query('SELECT * FROM Etiqueta')
     console.log(results)
-    return results;
+    return results.recordset
 }
 
 export const createEtiqueta = async (nombre) => {
