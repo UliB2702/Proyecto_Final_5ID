@@ -34,5 +34,5 @@ export const getByParams = async (email, contraseña) => {
     const conn = await sql.connect(configDB)
     const results = await conn.request().input("whereCondition", email).input("whereCondition2", contraseña).query('SELECT * FROM Cliente WHERE Email = @whereCondition AND Contraseña = @whereCondition2')
     console.log(results)
-    return results;
+    return results.recordsets;
 }

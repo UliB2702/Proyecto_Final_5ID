@@ -10,6 +10,7 @@ controller.get('/:id', async(req, res) => {
 })
 
 controller.get('', async(req, res) => {
+    console.log(req.body.email)
     const cliente = await getByParams(req.body.email, req.body.psw)
     return res.status(200).json(cliente)
 })
