@@ -7,12 +7,14 @@ import ResenaRouter from "./controllers/resenaController.js";
 import TramiteRouter from "./controllers/tramiteController.js";
 import TramiteXEtiquetaRouter from "./controllers/tramiteXEtiquetaController.js";
 import PeticionRouter from "./controllers/peticionController.js";
+import NotificacionRouter from "./controllers/notificacionController.js";
+import PreguntaFrecuenteRouter from "./controllers/preguntaFrecuenteController.js";
 import 'dotenv/config';
 import cors from 'cors'
 
 
 const app = express();
-const port = 5000;
+const port = 1433;
 
 
 
@@ -26,6 +28,8 @@ app.use("/resenas", ResenaRouter)
 app.use("/tramites", TramiteRouter)
 app.use("/tramitexetiquetas", TramiteXEtiquetaRouter)
 app.use("/peticiones", PeticionRouter)
+app.use("/notificaciones", NotificacionRouter)
+app.use("/preguntasFrecuentes", PreguntaFrecuenteRouter)
 
 //Usar Axios y promesas para conectar el React con el Express
 
