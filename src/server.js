@@ -14,7 +14,7 @@ import cors from 'cors'
 
 
 const app = express();
-const port = 1433;
+const port = 5000;
 
 
 

@@ -9,9 +9,9 @@ controller.get('/:id', async(req, res) => {
     return res.status(200).json(cliente)
 })
 
-controller.get('/', async(req, res) => {
-    console.log(req.query.email)
-    const cliente = await getByParams(req.query.email, req.query.psw)
+controller.post('/sesion', async(req, res) => {
+    console.log(req.body.email)
+    const cliente = await getByParams(req.body.email, req.body.psw)
     return res.status(200).json(cliente)
 })
 
