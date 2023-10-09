@@ -11,7 +11,10 @@ controller.get('/:id', async(req, res) => {
 
 controller.post('/sesion', async(req, res) => {
     console.log(req.body.email)
-    const cliente = await getByParams(req.body.email, req.body.psw)
+    var cliente = await getByParams(req.body.email, req.body.psw)
+    if (cliente.length === 0) {
+        cliente = undefined
+      }
     return res.status(200).json(cliente)
 })
 
