@@ -13,7 +13,7 @@ export const getClientes = async (id) => {
     const conn = await sql.connect(configDB)
     const results = await conn.request()
     .input("whereCondition", id)
-    .query('SELECT Gestor.Id,  Cliente.id, Cliente.nombre, Cliente.Dni,(SELECT Tramite.id, Tramite.Nombre, Tramite.Descripción FROM Tramite WHERE Tramite.IdGestor = Gestor.Id and Tramite.IdCliente = Cliente.id FOR JSON PATH) as ListaTramites FROM Gestor, Cliente where Gestor.Id = @whereCondition')
+    .query('SELECT Gestor.Id,  Cliente.id, Cliente.nombre, Cliente.Dni,(SELECT Tramite.id, Tramite.Nombre, Tramite.Descripción, Tramite.Imagen FROM Tramite WHERE Tramite.IdGestor = Gestor.Id and Tramite.IdCliente = Cliente.id FOR JSON PATH) as ListaTramites FROM Gestor, Cliente where Gestor.Id = @whereCondition')
     console.log(results)
     return results.recordset;
 }
@@ -39,9 +39,10 @@ export const createGestor = async(gestor) => {
     return results;
 }
 
-export const getByParams = async (email, contraseña) => {
+export const getByParams2 = async (email, contraseña) => {
     const conn = await sql.connect(configDB)
+    console.log("Llega aca", email, contraseña)
     const results = await conn.request().input("whereCondition", email).input("whereCondition2", contraseña).query('SELECT * FROM Gestor WHERE Email = @whereCondition AND Contraseña = @whereCondition2')
     console.log(results)
-    return results;
+    return results.recordsets[0];
 }

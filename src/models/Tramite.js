@@ -6,6 +6,7 @@ class Tramite{
     nombre;
     descripción;
     idTipoTramite;
+    imagen;
 }
 
 export default Tramite

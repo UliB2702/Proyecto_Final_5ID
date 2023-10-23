@@ -11,7 +11,7 @@ export const getByIDGestor = async (id) => {
 
 export const getByIDCliente = async (id) => {
     const conn = await sql.connect(configDB)
-    const results = await conn.request().input("whereCondition", id).query('SELECT Tramite.Id, Tramite.Nombre, Tramite.Descripción FROM Tramite INNER JOIN TipoDeTramite ON Tramite.IdTipoTramite = TipoDeTramite.Id INNER JOIN TramiteXEtiqueta ON Tramite.Id = TramiteXEtiqueta.IdTramite INNER JOIN Etiqueta ON TramiteXEtiqueta.IdEtiqueta = Etiqueta.Id WHERE Tramite.IdCliente = @whereCondition')
+    const results = await conn.request().input("whereCondition", id).query('SELECT Tramite.Id, Tramite.Nombre, Tramite.Descripción, Tramite.Imagen FROM Tramite INNER JOIN TipoDeTramite ON Tramite.IdTipoTramite = TipoDeTramite.Id INNER JOIN TramiteXEtiqueta ON Tramite.Id = TramiteXEtiqueta.IdTramite INNER JOIN Etiqueta ON TramiteXEtiqueta.IdEtiqueta = Etiqueta.Id WHERE Tramite.IdCliente = @whereCondition')
     console.log(results)
     return results.recordsets[0];
 }
@@ -25,7 +25,7 @@ export const createTramite = async (tramite) => {
     .input("tNombre", tramite.nombre)
     .input("tDescripción", tramite.descripción)
     .input("tIdTipoTramite", tramite.idTipoTramite)
-    .query('INSERT INTO Tramite (IdGestor, IdCliente, IdPais, Nombre, Descripción, IdTipoTramite) VALUES (@tIdGestor, @tIdCliente, @tIdPais, @tNombre, @tDescripción, @tIdTipoTramite)')
+    .query('INSERT INTO Tramite (IdGestor, IdCliente, IdPais, Nombre, Descripción, IdTipoTramite, Tramite.Imagen) VALUES (@tIdGestor, @tIdCliente, @tIdPais, @tNombre, @tDescripción, @tIdTipoTramite, @tImagen)')
     console.log(results)
     return results;
 }

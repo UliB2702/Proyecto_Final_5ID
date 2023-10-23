@@ -3,8 +3,8 @@ import { getByIdGestor} from '../services/preguntaFrecuenteService.js';
 const controller = Router()
 import Notificacion from "../models/PreguntaFrecuente.js";
 
-controller.get('', async(req, res) => {
-    const peticiones = await getByIdGestor(req.body.id)
+controller.get('/:id', async(req, res) => {
+    const peticiones = await getByIdGestor(req.params.id)
     return res.status(200).json(peticiones)
 })
 

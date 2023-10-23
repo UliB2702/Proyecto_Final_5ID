@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { getById, createCliente, getByParams } from '../services/clienteService.js';
+import { getByParams2 } from '../services/gestorService.js';
 const controller = Router()
 import Cliente from "../models/Cliente.js";
 
@@ -13,7 +14,10 @@ controller.post('/sesion', async(req, res) => {
     console.log(req.body.email)
     var cliente = await getByParams(req.body.email, req.body.psw)
     if (cliente.length === 0) {
+        cliente = await getByParams2(req.body.email, req.body.psw)
+        if (cliente.length === 0) {
         cliente = undefined
+        }
       }
     return res.status(200).json(cliente)
 })

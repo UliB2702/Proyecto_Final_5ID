@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getById, createGestor, getByParams, getClientes } from '../services/gestorService.js';
+import { getById, createGestor, getClientes } from '../services/gestorService.js';
 const controller = Router()
 import Gestor from "../models/Gestor.js";
 
@@ -9,10 +9,6 @@ controller.get('/:id', async(req, res) => {
     return res.status(200).json(gestor)
 })
 
-controller.get('', async(req, res) => {
-    const gestor = await getByParams(req.body.email, req.body.psw)
-    return res.status(200).json(gestor)
-})
 
 controller.get('/clientes/:id', async(req, res) => {
     let id = req.params.id

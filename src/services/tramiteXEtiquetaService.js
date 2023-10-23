@@ -19,5 +19,5 @@ export const createUnion = async (union) => {
     .input("fecha", union.fechaActualizacion)
     .query('INSERT INTO TramiteXEtiqueta (IdTramite, IdEtiqueta, Observaciones, FechaActualizacion) VALUES (@uIdT, @uIdE, @observaciones, @fecha)')
     console.log(results)
-    return results;
+    return results.recordsets;
 }
