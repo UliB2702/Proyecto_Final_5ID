@@ -1,11 +1,12 @@
 import { Router } from 'express';
 import { getByIdGestor} from '../services/preguntaFrecuenteService.js';
 const controller = Router()
-import Notificacion from "../models/PreguntaFrecuente.js";
+import PreguntaFrecuente from "../models/PreguntaFrecuente.js";
 
 controller.get('/:id', async(req, res) => {
-    const peticiones = await getByIdGestor(req.params.id)
-    return res.status(200).json(peticiones)
+    console.log("Entro a preguntas precuentes", req.params.id)
+    const preguntas = await getByIdGestor(req.params.id)
+    return res.status(200).json(preguntas)
 })
 
 export default controller;

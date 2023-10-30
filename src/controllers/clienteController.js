@@ -5,6 +5,7 @@ const controller = Router()
 import Cliente from "../models/Cliente.js";
 
 controller.get('/:id', async(req, res) => {
+    console.log("llego el router")
     let id = req.params.id
     const cliente = await getById(id)
     return res.status(200).json(cliente)
@@ -22,13 +23,15 @@ controller.post('/sesion', async(req, res) => {
     return res.status(200).json(cliente)
 })
 
-controller.post('', async(req, res) => {
+controller.post('/', async(req, res) => {
+    console.log("Request****", req.body)
     let cliente = new Cliente()
     cliente.nombre = req.body.nombre
     cliente.dni = req.body.dni
     cliente.email = req.body.email
     cliente.contraseña = req.body.psw
     cliente.fotoPerfil = req.body.foto
+    console.log(cliente)
     let completado
     completado = await createCliente(cliente) 
     if(completado == undefined)
