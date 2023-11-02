@@ -1,7 +1,10 @@
 class Notificacion{
     id;
-    idCliente;
+    idCliente
+    mensaje;
     descripcion;
+    idGestor
+
 }
 
 export default Notificacion

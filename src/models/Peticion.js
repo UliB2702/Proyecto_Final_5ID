@@ -2,7 +2,8 @@ class Peticion{
     id;
     idGestor;
     idCliente;
-    descripcion
+    mensaje
+    descripcion;
 }
 
 export default Peticion
