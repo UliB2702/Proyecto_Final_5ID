@@ -1,11 +1,17 @@
 import { Router } from 'express';
-import { getByIDGestor, getByIDCliente, createTramite } from '../services/tramiteService.js';
+import { getByIDGestor, getByIDCliente, createTramite, getByID } from '../services/tramiteService.js';
 const controller = Router()
 import Tramite from "../models/Tramite.js";
 
 controller.get('', async(req, res) => {
     let id = req.query.idg
     const tramite = await getByIDGestor(id)
+    return res.status(200).json(tramite)
+})
+
+controller.get('/detalle/:idt', async(req, res) => {
+    let id = req.params.idt
+    const tramite = await getByID(id)
     return res.status(200).json(tramite)
 })
 
