@@ -32,7 +32,8 @@ export const createTramite = async (tramite) => {
     .input("tNombre", tramite.nombre)
     .input("tDescripción", tramite.descripción)
     .input("tIdTipoTramite", tramite.idTipoTramite)
-    .query('INSERT INTO Tramite (IdGestor, IdCliente, IdPais, Nombre, Descripción, IdTipoTramite, Tramite.Imagen) VALUES (@tIdGestor, @tIdCliente, @tIdPais, @tNombre, @tDescripción, @tIdTipoTramite, @tImagen)')
+    .input("tImagen", tramite.imagen)
+    .query('INSERT INTO Tramite (IdGestor, IdCliente, IdPais, Nombre, Descripción, IdTipoTramite, Imagen) VALUES (@tIdGestor, @tIdCliente, @tIdPais, @tNombre, @tDescripción, @tIdTipoTramite, @tImagen)')
     console.log(results)
     return results;
 }

@@ -20,7 +20,7 @@ export const createEtiqueta = async (nombre) => {
     const conn = await sql.connect(configDB)
     const results = await conn.request()
     .input("eNombre", nombre)
-    .query('INSERT INTO Etiqueta (Nombre) VALUES (@eNombre)')
+    .query('INSERT INTO Etiqueta (Nombre) VALUES (@eNombreEtiqueta)')
     console.log(results)
     return results;
 }

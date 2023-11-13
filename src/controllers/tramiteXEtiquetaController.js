@@ -13,7 +13,6 @@ controller.post('', async(req, res) =>{
     union.idTramite = req.body.idT
     union.idEtiqueta = req.body.idE
     union.observaciones = req.body.o
-    union.fechaActualizacion = req.body.f
     await createUnion(union)
     return res.status(201).json(union)
 })

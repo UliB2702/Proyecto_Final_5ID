@@ -1,6 +1,6 @@
 class Etiqueta{
     id;
-    nombre;
+    nombreEtiqueta;
 }
 
 export default Etiqueta

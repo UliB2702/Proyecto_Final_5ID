@@ -29,6 +29,7 @@ controller.post('', async(req, res) => {
     tramite.nombre = req.body.nombre
     tramite.descripción = req.body.desc
     tramite.idTipoTramite = req.body.idTipo
+    tramite.imagen = req.body.imagen
     await createTramite(tramite)
     return res.status(201).json(tramite)
 })

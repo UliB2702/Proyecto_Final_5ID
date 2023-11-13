@@ -7,5 +7,5 @@ export const getByIdCliente = async (id) => {
     const conn = await sql.connect(configDB)
     const results = await conn.request().input("whereCondition", id).query('SELECT * FROM Notificacion WHERE IdCliente = @whereCondition')
     console.log(results)
-    return results;
+    return results.recordsets[0];
 }

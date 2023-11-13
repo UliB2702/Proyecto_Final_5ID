@@ -6,7 +6,7 @@ export const getByIDGestor = async (id) => {
     const conn = await sql.connect(configDB)
     const results = await conn.request().input("whereCondition", id).query('SELECT * FROM Peticion WHERE IdGestor = @whereCondition')
     console.log(results)
-    return results;
+    return results.recordsets[0];
 }
 
 export const createPeticion = async (peticion) => {
@@ -14,8 +14,9 @@ export const createPeticion = async (peticion) => {
     const results = await conn.request()
     .input("pIdGestor", peticion.idGestor)
     .input("pIdCliente", peticion.idCliente)
+    .input("pMensaje", peticion.mensaje)
     .input("pDesc", peticion.descripcion)
-    .query('INSERT INTO Peticion (IdGestor, IdCliente, Descripcion) VALUES (@pIdGestor, @pIdCliente , @pDesc)')
+    .query('INSERT INTO Peticion (IdGestor, IdCliente, Mensaje ,Descripcion) VALUES (@pIdGestor ,@pIdCliente, @pMensaje , @pDesc)')
     console.log(results)
     return results;
 }

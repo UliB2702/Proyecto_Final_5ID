@@ -11,13 +11,11 @@ export const getByID = async (idTramite, idEtiqueta) => {
 
 export const createUnion = async (union) => {
     const conn = await sql.connect(configDB)
-    union.fechaActualizacion = Date.now();
     const results = await conn.request()
     .input("uIdT", union.idTramite)
     .input("uIdE", union.idEtiqueta)
     .input("observaciones", union.observaciones)
-    .input("fecha", union.fechaActualizacion)
-    .query('INSERT INTO TramiteXEtiqueta (IdTramite, IdEtiqueta, Observaciones, FechaActualizacion) VALUES (@uIdT, @uIdE, @observaciones, @fecha)')
+    .query('INSERT INTO TramiteXEtiqueta (IdTramite, IdEtiqueta, Observaciones) VALUES (@uIdT, @uIdE, @observaciones)')
     console.log(results)
     return results.recordsets;
 }
