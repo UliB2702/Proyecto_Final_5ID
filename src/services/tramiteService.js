@@ -37,3 +37,16 @@ export const createTramite = async (tramite) => {
     console.log(results)
     return results;
 }
+
+export const updateTramite = async (tramite) => {
+    const conn = await sql.connect(configDB)
+    const results = await conn.request()
+    .input("tId", tramite.id)
+    .input("tIdPais", tramite.idPais)
+    .input("tNombre", tramite.nombre)
+    .input("tDescripción", tramite.descripción)
+    .input("tImagen", tramite.imagen)
+    .query('UPDATE Tramite SET Nombre = @tNombre, Descripción = @tDescripción, Imagen = @tImagen, IdPais = @tIdPais WHERE Tramite.Id = @tId')
+    console.log(results)
+    return results
+}

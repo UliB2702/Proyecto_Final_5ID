@@ -1,4 +1,5 @@
 class TramiteXEtiqueta{
+    idTramiteXEtiqueta;
     idTramite;
     idEtiqueta;
     observaciones;
